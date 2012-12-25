@@ -1,0 +1,12 @@
+!!! 5
+%html{:lang => "lv-LV"}
+  %head
+    %meta{:charset => 'utf-8'}
+    %title Shoo
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'https://www.google.com/jsapi'
+    = javascript_include_tag 'application'
+  %body{:onUnload => '(function () { try { game.die(); } catch (e) {} })();', :class => body_class}
+    #wrapper
+      #body
+        = yield
