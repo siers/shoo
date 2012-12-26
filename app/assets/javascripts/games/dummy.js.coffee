@@ -3,6 +3,8 @@ Game.list['dummy'] = Dummy =
     @field = $(field)
     @add_button()
     Game.console.log "Game init."
+    Game.dispacher.route 'dummy.click', ->
+      Dummy.click()
 
   click: ->
     Dummy.rot += 10
@@ -15,11 +17,14 @@ Game.list['dummy'] = Dummy =
       '-o-transform'      : rot,
     }
 
+
   add_button: ->
     style = 'position: absolute; top: 50%; left: 50%; margin: -5px 0 0 -10px;'
     @btn = $("<button style='#{ style }' disabled='disabled'>click me</button>").
-      bind('click', @click).
-      appendTo(@field)
+      appendTo(@field).
+      bind 'click', ->
+        Dummy.click()
+        Game.dispacher.send {type: 'dummy.click'}
 
   start: ->
     @rot = 0
