@@ -34,4 +34,7 @@ Shoo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Websocket tells it requires this.
+  config.threadsafe!
 end

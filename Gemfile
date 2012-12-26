@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
 gem 'sqlite3'
 gem 'haml'
-gem 'websocket-rails'
+gem 'websocket-rails', :git => '/home/s/code/ruby/websocket-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

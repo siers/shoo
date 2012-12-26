@@ -12,6 +12,8 @@
 //
 //= require "underscore"
 //= require "underscore.string"
+//= require websocket_rails/main
 //= require_tree .
 
 _.mixin(_.str.exports());
+
