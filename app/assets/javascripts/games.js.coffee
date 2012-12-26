@@ -62,11 +62,6 @@ Dispacher =
   init: ->
     #@sock.trigger('websocket_rails.reload!')
     @sock.bind 'game.ctcp', @recv
-    @sock.bind 'game.connected', ->
-      Console.log "Ready!"
-      Game.current.start()
-    @sock.bind 'game.reset', ->
-      Console.log "Other player(s) disconnected."
 
 window.Game =
   list:       {}
@@ -87,9 +82,18 @@ window.Game =
     @current.init(@field())
     @sock.trigger('game.new', {type: @name})
 
+  events: ->
+    @sock.bind 'game.connected', ->
+      Console.log "Ready!"
+      Game.current.start()
+    @sock.bind 'game.reset', ->
+      Console.log "Other player(s) disconnected."
+      Game.current.stop()
+
   show: ->
     Console.init()
     Dispacher.init()
     @current()
     @sock()
+    @events()
     @new()

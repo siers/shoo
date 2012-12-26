@@ -20,8 +20,8 @@ class GameQueue
     games[id]
   end
 
-  def destroy_game(id)
-    queues[type].delete(id)
-    games.delete(id)
+  def destroy_game(game)
+    queues[type].delete(game.id)
+    games.delete(game.id)
   end
 end
