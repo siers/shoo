@@ -68,9 +68,7 @@ window.Game =
   field:      -> $("#space")
   console:    Console
   dispacher:  Dispacher
-
-  sock: ->
-    @sock = Dispacher.sock
+  sock:       Dispacher.sock
 
   name: ->
     @name = window.location.href.split('/').pop()
@@ -79,7 +77,7 @@ window.Game =
     @current = @list[@name()]
 
   new: ->
-    @current.init(@field())
+    @current.stop()
     @sock.trigger('game.new', {type: @name})
 
   events: ->
@@ -88,12 +86,15 @@ window.Game =
       Game.current.start()
     @sock.bind 'game.reset', ->
       Console.log "Other player(s) disconnected."
-      Game.current.stop()
+      Game.new()
 
-  show: ->
+  init: ->
     Console.init()
     Dispacher.init()
-    @current()
-    @sock()
     @events()
+    @current()
+    @current.init(@field())
+
+  show: ->
+    @init()
     @new()
