@@ -46,7 +46,7 @@ Console =
   put: (text...) -> @write('-->', text...)
 
 Dispacher =
-  sock: new WebSocketRails('localhost:3000/websocket')
+  sock: new WebSocketRails("#{ window.location.hostname }:#{ window.location.port }/websocket")
 
   router: { null: 'place events in me!' } # Routes only game.ctcp.
   route: (event, handler) -> @router[event] = handler
