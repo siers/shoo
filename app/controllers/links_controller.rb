@@ -22,9 +22,11 @@ class LinksController < WebsocketRails::BaseController
   end
 
   def reset
-    send_others('game.reset')
-    games.type = current_game.type
-    games.destroy_game(current_game)
+    if current_game
+      send_others('game.reset')
+      games.type = current_game.type
+      games.destroy_game(current_game)
+    end
     self.current_game = nil
   end
 
