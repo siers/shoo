@@ -22,14 +22,14 @@ Console =
     $("#footer form").submit (e) ->
       e.preventDefault()
       Dispacher.send {type: 'chat', msg: val = input.val()}
-      Console.write(val)
+      Console.log(val)
       input.val('')
 
   init: ->
     @elem()
     @input()
     Dispacher.route 'chat', (data) ->
-      Console.write(data['msg'])
+      Console.put(data['msg'])
     Dispacher.sock.bind 'console.puts', (msg) ->
       Console.put(msg)
 
