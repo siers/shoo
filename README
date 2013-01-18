@@ -1,0 +1,7 @@
+- shoo, tiny ruby websockets glue for russian checkers
+
+- description
+    This thing can do checkers multiplayerably!
+
+- about
+    Needs a ruby 1.9.3, a browser capable of doing good javascripts.
