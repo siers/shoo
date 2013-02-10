@@ -3,6 +3,8 @@ class GamesController < ApplicationController
     @games = Dir.glob(Rails.root.join(*%w(app assets javascripts games *))).map do |game|
       game.match(/(\w+)(\.\w+)*$/)[1]
     end
+
+    @games -= ['dummy']
   end
 
   def show
